@@ -5,7 +5,7 @@ const dollarFilter = function (value) {
         return '$ 0'
     }
 
-    return numeral(value).format('($ 0.000a)')
+    return numeral(value).format('($ 0,000,00.00 a)')
 }
 
 const percentFilter = function (value) {
@@ -13,7 +13,8 @@ const percentFilter = function (value) {
         return '0 %'
     }
 
-    return `${Number(value).toFixed(2)} %`
+    // return `${Number(value).toFixed(2)} %`
+    return numeral(value).format('0 %')
 }
 
 export { dollarFilter, percentFilter }
