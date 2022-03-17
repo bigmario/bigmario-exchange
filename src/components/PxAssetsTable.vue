@@ -22,6 +22,7 @@
       >
         <td>
           <img
+            class="w-6 h-6"
             :src="`https://static.coincap.io/assets/icons/${a.symbol.toLowerCase()}@2x.png`"
             :alt="a.name"
           />
@@ -30,9 +31,17 @@
           <b># {{ a.rank }}</b>
         </td>
         <td>{{ a.name }}</td>
-        <td>{{ a.priceUsd }}</td>
-        <td>{{ a.marketCapUsd }}</td>
-        <td>{{ a.changePercent24Hr }}</td>
+        <td>{{ dollar(a.priceUsd) }}</td>
+        <td>{{ dollar(a.marketCapUsd) }}</td>
+        <td
+          :class="
+            a.changePercent24Hr.includes('-')
+              ? 'text-red-600'
+              : 'text-green-600'
+          "
+        >
+          {{ percent(a.changePercent24Hr) }}
+        </td>
         <td class="hidden sm:block"></td>
       </tr>
     </tbody>
@@ -40,6 +49,8 @@
 </template>
 
 <script>
+import { dollarFilter, percentFilter } from "@/filters";
+
 export default {
   name: "PxAssetsTable",
 
@@ -47,6 +58,15 @@ export default {
     assets: {
       type: Array,
       default: () => [],
+    },
+  },
+
+  methods: {
+    dollar(value) {
+      return dollarFilter(value);
+    },
+    percent(value) {
+      return percentFilter(value);
     },
   },
 };
