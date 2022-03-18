@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import HomePage from '@/views/HomePage'
 import AboutPage from '@/views/AboutPage'
 import ErrorPage from '@/views/ErrorPage'
+import CoinDetail from '@/views/CoinDetail'
 
 Vue.use(Router)
 
@@ -20,6 +21,11 @@ export default new Router({
             path: '/about',
             name: 'about_page',
             component: AboutPage
+        },
+        {
+            path: '/coin/:id',
+            name: 'coin_detail',
+            component: CoinDetail
         },
         {
             path: '*',

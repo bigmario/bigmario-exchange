@@ -14,6 +14,20 @@ function getAssets() {
     return getRequest("assets?limit=20");
 }
 
+function getAsset(coin) {
+    return getRequest(`assets/${coin}`);
+}
+
+function getAssetHistory(coin) {
+    // const now = new Date()
+    // const end = now.getTime()
+    // now.setDate(now.getTime() - 1)
+    // const start = now.getTime()
+
+    return getRequest(`assets/${coin}/history?interval=d1`)
+    // return getRequest(`assets/${coin}/history?interval=d1&start=${start}&end=${end}`)
+}
+
 function getRequest(endpoint) {
     return fetch(`${url}/${endpoint}`, {
         mode: "cors",
@@ -29,4 +43,5 @@ function getRequest(endpoint) {
         .catch(error => { console.log('request failed', error); }); // Syntax error: unexpected end of input
 }
 
-export default { getAssets };
+
+export default { getAssets, getAsset, getAssetHistory };
