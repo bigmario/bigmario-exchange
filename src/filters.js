@@ -5,7 +5,7 @@ const dollarFilter = function (value) {
         return '$ 0'
     }
 
-    return numeral(value).format('($ 0,000,00.00 a)')
+    return numeral(value).format('($ 0.00 a)')
 }
 
 const percentFilter = function (value) {

@@ -19,13 +19,12 @@ function getAsset(coin) {
 }
 
 function getAssetHistory(coin) {
-    // const now = new Date()
-    // const end = now.getTime()
-    // now.setDate(now.getTime() - 1)
-    // const start = now.getTime()
+    const now = new Date()
+    const end = now.getTime()
+    now.setDate(now.getDate() - 1)
+    const start = now.getTime()
 
-    return getRequest(`assets/${coin}/history?interval=d1`)
-    // return getRequest(`assets/${coin}/history?interval=d1&start=${start}&end=${end}`)
+    return getRequest(`assets/${coin}/history?interval=h1&start=${start}&end=${end}`)
 }
 
 function getRequest(endpoint) {
@@ -43,5 +42,13 @@ function getRequest(endpoint) {
         .catch(error => { console.log('request failed', error); }); // Syntax error: unexpected end of input
 }
 
+function getMarkets(coin) {
+    return getRequest(`assets/${coin}/markets?limit=5`)
+}
 
-export default { getAssets, getAsset, getAssetHistory };
+function getExchange(id) {
+    return getRequest(`exchanges/${id}`)
+}
+
+
+export default { getAssets, getAsset, getAssetHistory, getMarkets, getExchange };
